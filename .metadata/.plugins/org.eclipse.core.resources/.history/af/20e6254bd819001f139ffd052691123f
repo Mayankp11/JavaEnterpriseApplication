@@ -1,0 +1,28 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public class AccountDAO {
+
+	public static void main(String[] args) throws SQLException {
+		//DriverManager used to create a connection
+		//DriverManager.getConnection("jdbc:mysql://localhost:3306/training", "root", "Liverpool@11"); 
+		//we tell the protocol(jdbc) subProtocol(mysql) Location/IP address portNumber
+		Connection connection = null;
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/training", "root", "Liverpool@11"); //connectionURL, userName, Password
+			System.out.println(connection);
+			Statement statement = connection.createStatement();
+			
+			int executeUpdate = statement.executeUpdate("insert into account value(1, 'mohit', 'temp', 1000)");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
+		}
+	}
+
+}
